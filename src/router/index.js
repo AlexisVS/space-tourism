@@ -1,23 +1,46 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+// import destinations from '../store'
+// import destinationComponent from '../views/Destination.vue'
+
+// const nestedRoutesDestination = destinations.destinations.map(e => {
+//   let name
+//   name = e.name.toLowerCase()
+//   return {
+//     path: name,
+//     component: destinationComponent,
+//     props : {destination:{ ...e }},
+//   }
+// })
 
 Vue.use(VueRouter)
+
+
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/destination/:id',
+    name: 'Destination',
+    // children: nestedRoutesDestination,
+    props: true,
+    component: () => import(/* webpackChunkName: "destination" */ '../views/Destination.vue')
+
+  },
+  {
+    path: '/crew/:id',
+    name: 'Crew',
+    component: () => import(/* webpackChunkName: "crew" */ '../views/Crew.vue')
+  },
+  {
+    path: '/technology/:id',
+    name: 'Technology',
+    component: () => import(/* webpackChunkName: "technology" */ '../views/Technology.vue')
+  },
 ]
 
 const router = new VueRouter({
