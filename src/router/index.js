@@ -27,7 +27,7 @@ const routes = [
     path: '/destination/:id',
     name: 'Destination',
     // children: nestedRoutesDestination,
-    props: true,
+    // props: true,
     component: () => import(/* webpackChunkName: "destination" */ '../views/Destination.vue')
 
   },
